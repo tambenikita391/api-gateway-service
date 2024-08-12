@@ -22,7 +22,12 @@ jobs:
         run: mvn docker:build
 
       - name: Tag Docker image
-        run: docker tag ${image.registry}/${image.name}:${image.tag} ${image.registry}/${image.name}:latest
+        run: |
+          docker tag $IMAGE_REGISTRY/$IMAGE_NAME:$IMAGE_TAG $IMAGE_REGISTRY/$IMAGE_NAME:latest
+        env:
+          IMAGE_REGISTRY: tambenikita391
+          IMAGE_NAME: api-gateway
+          IMAGE_TAG: 0.0.1-SNAPSHOT
 
       - name: Log in to Docker Registry
         uses: docker/login-action@v2
@@ -31,9 +36,8 @@ jobs:
           password: ${{ secrets.DOCKER_REGISTRY_PAT }}
 
       - name: Push Docker image
-        run: docker push ${image.registry}/${image.name}:latest
-
-    env:
-        image.registry: tambenikita391
-        image.name: api-gateway
-        image.tag: 0.0.1-SNAPSHOT
+        run: |
+          docker push $IMAGE_REGISTRY/$IMAGE_NAME:latest
+        env:
+          IMAGE_REGISTRY: tambenikita391
+          IMAGE_NAME: api-gateway
