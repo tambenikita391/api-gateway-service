@@ -25,7 +25,6 @@
 			<version>4.1.1</version>
 		</dependency>
 	</dependencies>
-
 	<build>
 		<plugins>
 			<plugin>
@@ -68,31 +67,29 @@
 				</executions>
 			</plugin>
 			<plugin>
-				<groupId>com.spotify</groupId>
-				<artifactId>dockerfile-maven-plugin</artifactId>
-				<version>1.4.0</version>
-				<executions>
-					<execution>
-						<goals>
-							<goal>build</goal>
-						</goals>
-					</execution>
-				</executions>
+				<groupId>io.fabric8</groupId>
+				<artifactId>docker-maven-plugin</artifactId>
+				<version>0.44.0</version>
 				<configuration>
-					<repository>${project.artifactId}</repository>
-					<tag>${project.version}</tag>
-					<buildArgs>
-						<arg>version=${project.version}</arg>
-					</buildArgs>
+					<images>
+						<image>
+							<name>${project.artifactId}:${project.version}</name>
+							<build>
+								<contextDir>${project.basedir}/src/main/docker</contextDir>
+								<dockerfile>
+									${project.basedir}/src/main/docker/Dockerfile</dockerfile>
+							</build>
+							<tags>
+								<tag>${project.version}</tag>
+							</tags>
+						</image>
+					</images>
 				</configuration>
 			</plugin>
+
+
 		</plugins>
 	</build>
 
-	<repositories>
-		<repository>
-			<id>spotify-repo</id>
-			<url>https://repository.spotify.com/</url>
-		</repository>
-	</repositories>
+
 </project>
