@@ -1,14 +1,9 @@
-# Base image
-FROM ubuntu:latest
+FROM openjdk:8
 
-# Install OpenJDK 17
-RUN apt update && apt install -y openjdk-17-jdk
-
-# Create app directory
 WORKDIR /app
 
-# Copy the JAR file into the container
-COPY target/api-gateway-0.0.1-SNAPSHOT.jar /app/api-gateway.jar
+COPY target/api-gateway-service-0.0.1-SNAPSHOT.jar /app/
 
-# Run the application
-CMD ["java", "-jar", "api-gateway.jar"]
+EXPOSE 8080
+
+CMD ["java", "-jar", "api-gateway-service-0.0.1-SNAPSHOT.jar"]
