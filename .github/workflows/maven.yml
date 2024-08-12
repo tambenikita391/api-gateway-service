@@ -19,11 +19,12 @@ jobs:
           java-version: '17'
 
       - name: Build Docker image
-        run: mvn docker:build
+        run: docker build -t $IMAGE_REGISTRY/$IMAGE_NAME:$IMAGE_TAG .
 
       - name: Tag Docker image
         run: |
           docker tag $IMAGE_REGISTRY/$IMAGE_NAME:$IMAGE_TAG $IMAGE_REGISTRY/$IMAGE_NAME:latest
+
         env:
           IMAGE_REGISTRY: tambenikita391
           IMAGE_NAME: api-gateway
