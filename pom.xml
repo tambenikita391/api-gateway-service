@@ -67,23 +67,22 @@
 				</executions>
 			</plugin>
 			<plugin>
-				<groupId>io.fabric8</groupId>
-				<artifactId>docker-maven-plugin</artifactId>
-				<version>0.49.0</version>
+				<groupId>com.spotify</groupId>
+				<artifactId>dockerfile-maven-plugin</artifactId>
+				<version>1.4.0</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>build</goal>
+						</goals>
+					</execution>
+				</executions>
 				<configuration>
-					<images>
-						<image>
-							<name>${project.artifactId}:${project.version}</name>
-							<build>
-								<contextDir>${project.basedir}/src/main/docker</contextDir>
-								<dockerfile>
-									${project.basedir}/src/main/docker/Dockerfile</dockerfile>
-							</build>
-							<tags>
-								<tag>${project.version}</tag>
-							</tags>
-						</image>
-					</images>
+					<repository>${project.artifactId}</repository>
+					<tag>${project.version}</tag>
+					<buildArgs>
+						<arg>version=${project.version}</arg>
+					</buildArgs>
 				</configuration>
 			</plugin>
 		</plugins>
