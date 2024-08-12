@@ -74,15 +74,15 @@
 					<images>
 						<image>
 							<name>${project.artifactId}:${project.version}</name>
-							<tags>
-								<tag>${project.version}</tag>
-							</tags>
 						</image>
 					</images>
 					<build>
 						<dockerFile>
 							${project.basedir}/src/main/docker/Dockerfile</dockerFile>
 						<contextDir>${project.basedir}/src/main/docker</contextDir>
+						<tags>
+							<tag>${project.version}</tag>
+						</tags>
 					</build>
 				</configuration>
 			</plugin>
