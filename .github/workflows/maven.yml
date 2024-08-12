@@ -35,8 +35,8 @@ jobs:
       if: false
       run: mvn org.owasp:dependency-check-maven:check
 
-    - name: Build code and create docker images
-      run: mvn clean install docker:build 
+    - name: Build code and create Docker image
+      run: mvn clean install io.fabric8:docker-maven-plugin:build
 
     - name: Re tag docker image
       run: docker tag dnyanyog.org/api-gateway:0.0.1-SNAPSHOT tambenikita391/api-gateway:latest 
