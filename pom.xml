@@ -76,8 +76,10 @@
 							<name>${project.artifactId}:${project.version}</name>
 							<build>
 								<contextDir>${project.basedir}/src/main/docker</contextDir>
-								<dockerfile>
-									${project.basedir}/src/main/docker/Dockerfile</dockerfile>
+								<build>
+									<dockerFile>
+										${project.basedir}/src/main/docker/Dockerfile</dockerFile>
+								</build>
 							</build>
 							<tags>
 								<tag>${project.version}</tag>
@@ -86,10 +88,6 @@
 					</images>
 				</configuration>
 			</plugin>
-
-
 		</plugins>
 	</build>
-
-
 </project>
