@@ -84,6 +84,9 @@
 							<tag>${project.version}</tag>
 						</tags>
 					</build>
+					<push>
+						<tagLatest>true</tagLatest>
+					</push>
 				</configuration>
 			</plugin>
 		</plugins>
